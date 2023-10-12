@@ -48,6 +48,8 @@ def concatenate_images(images):
     return concatenated_image
     
 def select_function(evt: gr.SelectData):
+    print('evt.value===============', evt.value)
+    print('styles len===============', len(styles))
     matched = list(filter(lambda item: evt.value == item['name'], styles))
     style = matched[0]
     return gr.Text.update(value=style['name'], visible=True)
@@ -1106,6 +1108,7 @@ styles = []
 for base_model in base_models:
     style_in_base = []
     folder_path = f"{os.path.dirname(os.path.abspath(__file__))}/styles/{base_model['name']}"
+    print('folder_path========', folder_path)
     files = os.listdir(folder_path)
     files.sort()
     for file in files:
